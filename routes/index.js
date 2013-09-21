@@ -30,9 +30,23 @@ exports.places = function(req, res){
         radius,
         food,
         location,
-        req_string;
+        req_string,
+        sort,
+        order;
     console.log('places');
-    console.log(req.body);
+
+    //console.log(req.query);
+    if(req.body.sort!=undefined){
+        sort=req.body.sort;
+    }
+
+    if(req.body.order!=undefined){
+        order=req.body.order;
+    }
+    else{
+        order='asc';
+    }
+
     if(req.body.radius==undefined){
         radius=10000;
     }
@@ -62,22 +76,93 @@ exports.places = function(req, res){
 
     handle_response=function(err,response,data){
         if(err===null){
-            console.log(typeof data); 
             data=JSON.parse(data);
-            console.log(data.results);
-            var i,
-                l=data.results.length;
+            var sort = function(data,prop,order){
+                var max_results=3,
+                    results=[],
+                    best,
+                    i,j;
 
-            //for(i=0;i<l;i++){
-              //  console.log(data.results[i].reference);
-            //}
-            res.send(data);
+                if(order){
+                    for(i=0;i<data.results.length;i++){
+                        if(results.length<max_results){
+                            results.push(data.results[i]);
+                        }
+                        else{
+                            for(j=0;j<results.length;j++){
+                                if(results[j][prop]<data.results[i][prop]){
+                                    results.push(data.results[i]);
+                                    break;
+                                }
+                            }
+                            if(results.length>max_results){
+                                var worst_index=0,
+                                    worst_val = results[0][prop];
 
+                                for(j=1;j<results.length;j++){
+                                    if(results[j][prop]<worst_val){
+                                        worst_val=results[j][prop];
+                                        worst_index=j;
+                                    }
+                                }
+                                results.splice(worst_index,1);
+                            }
+                        }
+                    }
+                }
+                else{
+                    for(i=0;i<data.results.length;i++){
+                        if(results.length<max_results){
+                            results.push(data.results[i]);
+                        }
+                        else{
+                            for(j=0;j<results.length;j++){
+                                if(results[j][prop]>data.results[i][prop]){
+                                    results.push(data.results[i]);
+                                    break;
+                                }
+                            }
+                            if(results.length>max_results){
+                                var best_index=0,
+                                    best_val = results[0][prop];
+
+                                for(j=1;j<results.length;j++){
+                                    if(results[j][prop]>best_val){
+                                        best_val=results[j][prop];
+                                        best_index=j;
+                                    }
+                                }
+                                results.splice(best_index,1);
+                            }
+                        }
+                    }
+                }
+                console.log(typeof data.results);
+                console.log(typeof results);
+                console.log(data);
+                //cb(data);
+                data.results=results;
+                res.send(data);
+
+            };
+
+
+            if(sort!==undefined){
+                if(order!='asc'){
+                    sort(data,sort);
+                }
+                else{
+                    sort(data,sort,true);
+                }
+            }
+            else{
+                res.send(data);
+            }
         }
         else{
             res.send({this_is_cool:false});
         }
     };
-    console.log(req_string);
+    //console.log(req_string);
     request(req_string,handle_response);
 };
