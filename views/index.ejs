@@ -122,11 +122,13 @@
 	</div>
 
 
-	<form id="food-search" role="form">
+	<form action="#" id="food-search" role="form">
 		<div class="input-group">
 			<span class="input-group-addon"><span class="glyphicon glyphicon-cutlery"></span></span>
 			<input type="text" class="form-control" id="foodInput" placeholder="Type of food you want... pizza, mexican, bbq...." autofocus>
-			<input style="display:none" type="submit"/>
+			      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">ME HUNGRY!</button>
+      </span>
 		</div>
 	</form>
 
@@ -134,7 +136,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading" data-toggle="collapse" data-parent="#foodList" href="#cheapestGroup">
 				<h4 class="panel-title">
-					Best
+					Cheapest
 				</h4>
 			</div>
 			<div id="cheapestGroup" class="panel-collapse collapse in">
@@ -157,31 +159,6 @@
 			</div>
 		</div>
 
-		<div class="panel panel-default">
-			<div class="panel-heading" data-toggle="collapse" data-parent="#foodList" href="#closestGroup">
-				<h4 class="panel-title">
-					Best
-				</h4>
-			</div>
-			<div id="closestGroup" class="panel-collapse collapse in">
-				<div class="panel-body">
-					<div class="list-group"><!--
-						<a href="#" class="list-group-item food-place">
-							<button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
-							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
-							<h4 class="list-group-item-heading">Food Place</h4>
-							<p class="list-group-item-text">Stuff</p>
-						</a>
-						<a href="#" class="list-group-item">
-							<button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
-							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
-							<h4 class="list-group-item-heading">Food Place</h4>
-							<p class="list-group-item-text">Stuff</p>
-						</a>-->
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -189,7 +166,7 @@
 	<script src="/javascripts/collapse.js"></script>
 	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtj8Ryh3t-hUlFkBx2faLB-ohqs6iGkn8&libraries=places&sensor=true"></script>-->
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtj8Ryh3t-hUlFkBx2faLB-ohqs6iGkn8&sensor=true"></script>
-	<script type="text/javascript" src="/javascripts/places.js"></script>
+	<!--<script type="text/javascript" src="/javascripts/places.js"></script>-->
 
 	<script type="text/javascript">
 	$(document).on("ready", function() {
@@ -221,6 +198,9 @@
 
 					$("#cheapestGroup").find(".list-group").append("<a href='#' class='list-group-item food-place' data-address='"+data.results[i].vicinity+"' data-name='"+data.results[i].name+"'><button type='button' data-number='17853831049' class='call-btn btn btn-success pull-right'><span class='glyphicon glyphicon-earphone'></span></button><!--<span data-toggle='modal' href='#myModal' class='pull-right glyphicon glyphicon-book info-button'></span>--><h4 class='list-group-item-heading'>"+data.results[i].name+"</h4><p class='list-group-item-text'>"+data.results[i].vicinity+"</p></a>");
 
+					$("#foodList").collapse();
+					$("#foodList").slideDown(700);
+
 				}
 
 
@@ -228,29 +208,8 @@
 
 			});
 
-						$.post("places", { sort: "price_level", order:"asc",location: location, food: food}).done(function(data) {
-
-				for (var i = data.results.length - 1; i >= 0; i--) {
-					
-					//if not open, ignore.
-					if(typeof data.results[i].opening_hours !== 'undefined' && !data.results[i].opening_hours.open_now)
-					{
-						continue;
-					}
-
-					$("#cheapestGroup").find(".list-group").append("<a href='#' class='list-group-item food-place' data-address='"+data.results[i].vicinity+"' data-name='"+data.results[i].name+"'><button type='button' data-number='17853831049' class='call-btn btn btn-success pull-right'><span class='glyphicon glyphicon-earphone'></span></button><!--<span data-toggle='modal' href='#myModal' class='pull-right glyphicon glyphicon-book info-button'></span>--><h4 class='list-group-item-heading'>"+data.results[i].name+"</h4><p class='list-group-item-text'>"+data.results[i].vicinity+"</p></a>");
-
-				$("#foodList").slideDown(700);
-				$("#foodList").collapse();
-				}
-
-
-			}).error(function(err) {
-
-			});
 
 		};
-
 
 		$("#food-search").on('submit', function(e) {
 
