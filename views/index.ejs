@@ -4,9 +4,38 @@
     <title><%= title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+
+    <style type="text/css">
+
+    h1
+    {
+
+    	font-weight: 1.4em;
+
+    }
+
+
+    .food-list
+    {
+    	list-style: none;
+
+    }
+
+    .food-group
+    {
+
+    }
+
+    .food-group ul
+    {
+    	list-style: none;
+    }
+
+    </style>
+
   </head>
   <body>
-	<h1>FoodBook</h1>
+	<h1 class="header">FoodBook</h1>
 	<form role="form">
 		<div class="input-group">
 			<span class="input-group-addon"><span class="glyphicon glyphicon-cutlery"></span></span>
@@ -15,7 +44,6 @@
 	</form>
 
 	<ul class="food-list">
-
 		<li class="food-group">
 			<ul>
 				<li class="food-item">
@@ -23,12 +51,8 @@
 
 
 				</li>
-
 			</ul>
-			
-
 		</li>
-
 	</ul>
 
   	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
