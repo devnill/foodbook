@@ -25,6 +25,7 @@ var place_details=function(ref_id,cb){
 
 
 exports.places = function(req, res){
+	console.log("yo?");
     var handle_response,
         radius,
         food,

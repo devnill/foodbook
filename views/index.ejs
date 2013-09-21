@@ -156,32 +156,6 @@
 			</div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading" data-toggle="collapse" data-parent="#foodList" href="#collapseTwo">
-				<h4 class="panel-title">
-					Fastest
-				</h4>
-			</div>
-			<div id="collapseTwo" class="panel-collapse collapse">
-				<div class="panel-body">
-
-					<div class="list-group">
-						<a href="#" class="list-group-item">
-							<button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
-							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
-							<h4 class="list-group-item-heading">Food Place</h4>
-							<p class="list-group-item-text">Stuff</p>
-						</a>
-						<a href="#" class="list-group-item">
-							<button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
-							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
-							<h4 class="list-group-item-heading">Food Place</h4>
-							<p class="list-group-item-text">Stuff</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="panel panel-default">
 			<div class="panel-heading" data-toggle="collapse" data-parent="#foodList" href="#collapseThree">
 				<h4 class="panel-title">
 					Cheapest
@@ -214,7 +188,7 @@
 	<script src="/javascripts/collapse.js"></script>
 	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtj8Ryh3t-hUlFkBx2faLB-ohqs6iGkn8&libraries=places&sensor=true"></script>-->
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtj8Ryh3t-hUlFkBx2faLB-ohqs6iGkn8&sensor=true"></script>
-	<script type="text/javascript" src="//javascripts/places.js"></script>
+	<!--<script type="text/javascript" src="/javascripts/places.js"></script>-->
 
 	<script type="text/javascript">
 	$(document).on("ready", function() {
@@ -228,17 +202,45 @@
 		});
 
 
+
+		var search = function(location, food)
+		{
+			$("#foodInput").blur();
+
+
+			$.post("places", {location: location, food: food}).done(function(data) {
+
+				for (var i = data.results.length - 1; i >= 0; i--) {
+					console.log(data.results[i].name);
+				};
+
+				$("#foodList").show(700);
+				$("#foodList").collapse();
+			}).error(function(err) {
+
+			});
+
+		};
+
+
 		$("#food-search").on('submit', function(e) {
 			e.preventDefault();
 
 
-			$("#foodList").show(700);
+
+			var food = $("#foodInput").val();
 
 
-			$("#foodList").collapse();
-
-			$("#foodInput").blur();
-
+	        if(navigator.geolocation) {
+	            browserSupportFlag = true;
+	            navigator.geolocation.getCurrentPosition(function(position) {
+	            	console.log();
+               		
+               		search(position.coords.latitude + "," + position.coords.longitude, food);
+	            }, function() {
+	                //todo prompt for zip
+	            });
+	        }
 
 		});
 
