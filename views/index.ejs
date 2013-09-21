@@ -126,19 +126,20 @@
 		<div class="input-group">
 			<span class="input-group-addon"><span class="glyphicon glyphicon-cutlery"></span></span>
 			<input type="text" class="form-control" id="foodInput" placeholder="Type of food you want... pizza, mexican, bbq...." autofocus>
+			<input style="display:none" type="submit"/>
 		</div>
 	</form>
 
 	<div class="panel-group" id="foodList">
 		<div class="panel panel-default">
-			<div class="panel-heading" data-toggle="collapse" data-parent="#foodList" href="#collapseOne">
+			<div class="panel-heading" data-toggle="collapse" data-parent="#foodList" href="#bestGroup">
 				<h4 class="panel-title">
 					Best
 				</h4>
 			</div>
-			<div id="collapseOne" class="panel-collapse collapse in">
+			<div id="bestGroup" class="panel-collapse collapse in">
 				<div class="panel-body">
-					<div class="list-group">
+					<div class="list-group"><!--
 						<a href="#" class="list-group-item food-place">
 							<button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
 							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
@@ -150,33 +151,7 @@
 							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
 							<h4 class="list-group-item-heading">Food Place</h4>
 							<p class="list-group-item-text">Stuff</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading" data-toggle="collapse" data-parent="#foodList" href="#collapseThree">
-				<h4 class="panel-title">
-					Cheapest
-				</h4>
-			</div>
-			<div id="collapseThree" class="panel-collapse collapse">
-				<div class="panel-body">
-
-					<div class="list-group">
-						<a href="#" class="list-group-item">
-							<button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
-							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
-							<h4 class="list-group-item-heading">Food Place</h4>
-							<p class="list-group-item-text">Stuff</p>
-						</a>
-						<a href="#" class="list-group-item">
-							<button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
-							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
-							<h4 class="list-group-item-heading">Food Place</h4>
-							<p class="list-group-item-text">Stuff</p>
-						</a>
+						</a>-->
 					</div>
 				</div>
 			</div>
@@ -211,11 +186,20 @@
 			$.post("places", {location: location, food: food}).done(function(data) {
 
 				for (var i = data.results.length - 1; i >= 0; i--) {
-					console.log(data.results[i].name);
-				};
+					
+					//if not open, ignore.
+					if(typeof data.results[i].opening_hours !== 'undefined' && !data.results[i].opening_hours.open_now)
+					{
+						continue;
+					}
+
+					$("#bestGroup").find(".list-group").append("<a href='#' class='list-group-item food-place' data-address='"+data.results[i].vicinity+"' data-name='"+data.results[i].name+"'><button type='button' data-number='17853831049' class='call-btn btn btn-success pull-right'><span class='glyphicon glyphicon-earphone'></span></button><span data-toggle='modal' href='#myModal' class='pull-right glyphicon glyphicon-book info-button'></span><h4 class='list-group-item-heading'>"+data.results[i].name+"</h4><p class='list-group-item-text'>"+data.results[i].vicinity+"</p></a>");
+
+				}
 
 				$("#foodList").show(700);
 				$("#foodList").collapse();
+
 			}).error(function(err) {
 
 			});
@@ -224,11 +208,11 @@
 
 
 		$("#food-search").on('submit', function(e) {
+
+
 			e.preventDefault();
-
-
-
 			var food = $("#foodInput").val();
+
 
 
 	        if(navigator.geolocation) {

@@ -33,6 +33,7 @@ exports.places = function(req, res){
         req_string,
         sort;
     console.log('places');
+
     console.log(req.query);
 
     if(req.query.sort!=undefined){
@@ -42,25 +43,25 @@ exports.places = function(req, res){
         radius=10000;
     }
     else{
-        if(req.query.radius<=50000){
-            radius = req.query.radius;
+        if(req.body.radius<=50000){
+            radius = req.body.radius;
         }
         else{
             radius= 10000;
         }
     }
 
-    if(req.query.food==undefined){
+    if(req.body.food==undefined){
         food='pizza';
     }
     else{
-        food=req.query.food;
+        food=req.body.food;
     }
-    if(req.query.location==undefined){
+    if(req.body.location==undefined){
         location='-33.8670522,151.1957362';
     }
     else{
-        location=req.query.location;
+        location=req.body.location;
     }
 
     req_string='https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location+'&radius='+radius+'&types=food&name='+food+'&sensor=true&key='+api_key;
