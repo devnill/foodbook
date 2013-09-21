@@ -17,19 +17,21 @@ add = function(data){
     localStorage[data.search]JSON
 };
 get = function(search,cb){
-    var i,l=localStorage.length,search_type;
+    var i,l=localStorage.length,results=[];
     if(search==undefined){
         //show all recent
-        search_type='recent';
+
     }
     else{
         //search for string
-        search_type='type';
+        for(i=0;i<localStorage.length;i++){
+            if(localStorage[i].search.match(search)||localStorage[i].name.match(search)||localStorage[i].type.match(search)){
+
+            }
+        }
     }
 
-    for(i=0;i<localStorage.length;i++){
-        
-    }
+
     cb();
 
 };
