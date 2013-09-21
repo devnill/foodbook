@@ -4,10 +4,53 @@
     <title><%= title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
-    
+	<link href='http://fonts.googleapis.com/css?family=Rambla:400,700italic' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+
+
+    *
+    {
+    	border-top-right-radius: 0px !important;
+		border-top-left-radius: 0px !important;
+
+    	border-bottom-right-radius: 0px !important;
+		border-bottom-left-radius: 0px !important;
+    }
+
+    body
+    {
+    }
+
+
+    .head
+    {
+    	min-width: 100%;
+    	width: 100%;
+    	background-color: #4575D4;
+    	text-align: center;
+
+    	padding-bottom: 6px;
+    }
+
+    h1
+    {
+    	font: bold italic;
+    	font-family: 'Rambla', sans-serif;
+    	font-weight: 900 !important;
+    	color: #FFF;
+    	margin-top: 0;
+    	margin-bottom: 0;
+    	padding-top: 18px;
+    }
+
+    </style>
+
   </head>
   <body>
-	<h1>FoodBook</h1>
+  	<div class="head">
+		<h1>the foodbook</h1>
+		<img src="/images/powered-by-google-on-non-white.png"></span>
+  	</div>
 	<form role="form">
 		<div class="input-group">
 			<span class="input-group-addon"><span class="glyphicon glyphicon-cutlery"></span></span>
@@ -15,23 +58,21 @@
 		</div>
 	</form>
 
-	<ul class="food-list">
-
-		<li class="food-group">
-			<ul>
-				<li class="food-item">
-
-
-
-				</li>
-
-			</ul>
-			
-
-		</li>
-
-	</ul>
-    <canvas id='map'></canvas>
+    
+	<div class="list-group">
+	  <a href="#" class="list-group-item">
+	    <h4 class="list-group-item-heading">Food Place</h4>
+	    <p class="list-group-item-text">Stuff</p>
+	  </a>
+	  <a href="#" class="list-group-item">
+	    <h4 class="list-group-item-heading">Food Place</h4>
+	    <p class="list-group-item-text">Stuff</p>
+	  </a>
+	  <a href="#" class="list-group-item">
+	    <h4 class="list-group-item-heading">Food Place</h4>
+	    <p class="list-group-item-text">Stuff</p>
+	  </a>
+	</div>
   	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="/javascripts/bootstrap.min.js"></script>
     <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtj8Ryh3t-hUlFkBx2faLB-ohqs6iGkn8&libraries=places&sensor=true"></script>-->
