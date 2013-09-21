@@ -177,6 +177,9 @@
 
 			window.location = "tel:"+number;
 
+			places.add({ name: $(this).data("name"), address: $(this).parent.data("address"), 
+						 phone: $(this).parent.data("number")});
+
 		});
 
 	   $("#hungry").on('click', function() {
@@ -198,6 +201,8 @@
 					{
 						continue;
 					}
+
+
 
 					$("#cheapestGroup").find(".list-group").append("<a href='#' class='list-group-item food-place' data-address='"+data.results[i].vicinity+"' data-name='"+data.results[i].name+"'><button type='button' data-number='17853831049' class='call-btn btn btn-success pull-right'><span class='glyphicon glyphicon-earphone'></span></button><!--<span data-toggle='modal' href='#myModal' class='pull-right glyphicon glyphicon-book info-button'></span>--><h4 class='list-group-item-heading'>"+data.results[i].name+"</h4><p class='list-group-item-text'>"+data.results[i].vicinity+"</p></a>");
 
