@@ -127,7 +127,7 @@
 			<span class="input-group-addon"><span class="glyphicon glyphicon-cutlery"></span></span>
 			<input type="text" class="form-control" id="foodInput" placeholder="Type of food you want... pizza, mexican, bbq...." autofocus>
 			      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit">ME HUNGRY!</button>
+        <button class="btn btn-default" id="hungry" type="submit">ME HUNGRY!</button>
       </span>
 		</div>
 	</form>
@@ -179,7 +179,10 @@
 
 		});
 
+	   $("#hungry").on('click', function() {
 
+	   		$("#food-search").submit();
+	   });
 
 		var search = function(location, food)
 		{
