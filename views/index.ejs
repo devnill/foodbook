@@ -1,156 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title><%= title %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+<head>
+	<title><%= title %></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
 	<link href='http://fonts.googleapis.com/css?family=Rambla:400,700italic' rel='stylesheet' type='text/css'>
-    <style type="text/css">
+	<style type="text/css">
 
 
-    *
-    {
-    	border-top-right-radius: 0px !important;
+	*
+	{
+		border-top-right-radius: 0px !important;
 		border-top-left-radius: 0px !important;
 
-    	border-bottom-right-radius: 0px !important;
+		border-bottom-right-radius: 0px !important;
 		border-bottom-left-radius: 0px !important;
-    }
+	}
 
-    body
-    {
-    }
+	body
+	{
+	}
 
 
-    .head
-    {
-    	min-width: 100%;
-    	width: 100%;
-    	background-color: #4575D4;
-    	text-align: center;
+	.head
+	{
+		min-width: 100%;
+		width: 100%;
+		background-color: #4575D4;
+		text-align: center;
 
-    	padding-bottom: 6px;
-    }
+		padding-bottom: 6px;
+	}
 
-    .panel-body {
+	.panel-body {
 		padding: 0 !important;
 	}
 
-    h1
-    {
-    	font: bold italic;
-    	font-family: 'Rambla', sans-serif;
-    	font-weight: 900 !important;
-    	color: #FFF;
-    	margin-top: 0;
-    	margin-bottom: 0;
-    	padding-top: 18px;
-    }
+	.list-group {
 
-    </style>
+		margin: 0 !important;
 
-  </head>
-  <body>
-  	<div class="head">
+	}
+
+	h1
+	{
+		font: bold italic;
+		font-family: 'Rambla', sans-serif;
+		font-weight: 900 !important;
+		color: #FFF;
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-top: 18px;
+	}
+
+	</style>
+
+</head>
+<body>
+
+
+
+
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+        	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        	<h4 class="modal-title">Food Place</h4>
+        </div>
+        <div class="modal-body">
+
+        	Website:<br/>
+        	<a href="www.pizzahut.com">http://pizzahut.com</a><br/>
+        	Address:<br/>
+        	<div class="well well-sm">
+        		1434 W MasheryContext IO,<br/>
+        		Denver, Colorado
+        	</div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
+
+	<div class="head">
 		<h1>the foodbook</h1>
 		<img src="/images/powered-by-google-on-non-white.png"></img>
-  	</div>
+	</div>
+
+
 	<form role="form">
 		<div class="input-group">
 			<span class="input-group-addon"><span class="glyphicon glyphicon-cutlery"></span></span>
-		    <input type="text" class="form-control" id="foodInput" placeholder="pizza" autofocus>
+			<input type="text" class="form-control" id="foodInput" placeholder="pizza" autofocus>
 		</div>
 	</form>
-<div class="panel-group" id="accordion">
-  <div class="panel panel-default">
-    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-      <h4 class="panel-title">
-          Best
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in">
-      <div class="panel-body">
 
-	<div class="list-group">
-	  <a href="#" class="list-group-item">
-	    <h4 class="list-group-item-heading">Food Place</h4>
-	    <p class="list-group-item-text">Stuff</p>
-	  </a>
-	  <a href="#" class="list-group-item">
-	    <h4 class="list-group-item-heading">Food Place</h4>
-	    <p class="list-group-item-text">Stuff</p>
-	  </a>
-	  <a href="#" class="list-group-item">
-	    <h4 class="list-group-item-heading">Food Place</h4>
-	    <p class="list-group-item-text">Stuff</p>
-	  </a>
-	</div>
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-      <h4 class="panel-title">
-          Fastest
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse">
-      <div class="panel-body">
 
-	<div class="list-group">
-	  <a href="#" class="list-group-item">
-	    <h4 class="list-group-item-heading">Food Place</h4>
-	    <p class="list-group-item-text">Stuff</p>
-	  </a>
-	  <a href="#" class="list-group-item">
-	    <h4 class="list-group-item-heading">Food Place</h4>
-	    <p class="list-group-item-text">Stuff</p>
-	  </a>
-	  <a href="#" class="list-group-item">
-	    <h4 class="list-group-item-heading">Food Place</h4>
-	    <p class="list-group-item-text">Stuff</p>
-	  </a>
-	</div>
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-      <h4 class="panel-title">
-           Cheapest
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse">
-      <div class="panel-body">
-    
-	<div class="list-group">
-	  <a href="#" class="list-group-item">
-	    <h4 class="list-group-item-heading">Food Place</h4>
-	    <p class="list-group-item-text">Stuff</p>
-	  </a>
-	  <a href="#" class="list-group-item">
-	    <h4 class="list-group-item-heading">Food Place</h4>
-	    <p class="list-group-item-text">Stuff</p>
-	  </a>
-	  <a href="#" class="list-group-item">
-	    <h4 class="list-group-item-heading">Food Place</h4>
-	    <p class="list-group-item-text">Stuff</p>
-	  </a>
-	</div>
-      </div>
-    </div>
-  </div>
-</div>
-    
-  	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="/javascripts/bootstrap.min.js"></script>
-    <script src="/javascripts/collapse.js"></script>
-    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtj8Ryh3t-hUlFkBx2faLB-ohqs6iGkn8&libraries=places&sensor=true"></script>-->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtj8Ryh3t-hUlFkBx2faLB-ohqs6iGkn8&sensor=true"></script>
-    <script type="text/javascript" src="//javascripts/places.js"></script>
 
-    <script type="text/javascript">
-    $(".accordion").collapse()
-    </script>
-  </body>
+	<div class="panel-group" id="accordion">
+		<div class="panel panel-default">
+			<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+				<h4 class="panel-title">
+					Best
+				</h4>
+			</div>
+			<div id="collapseOne" class="panel-collapse collapse in">
+				<div class="panel-body">
+					<div class="list-group">
+						<a href="#" class="list-group-item food-place">
+							<h4 class="list-group-item-heading">Food Place
+							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book"></span></h4>
+							<p class="list-group-item-text">Stuff</p>
+						</a>
+						<a href="#" class="list-group-item">
+							<h4 class="list-group-item-heading">Food Place</h4>
+							<p class="list-group-item-text">Stuff</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+				<h4 class="panel-title">
+					Fastest
+				</h4>
+			</div>
+			<div id="collapseTwo" class="panel-collapse collapse">
+				<div class="panel-body">
+
+					<div class="list-group">
+						<a href="#" class="list-group-item">
+							<h4 class="list-group-item-heading">Food Place</h4>
+							<p class="list-group-item-text">Stuff</p>
+						</a>
+						<a href="#" class="list-group-item">
+							<h4 class="list-group-item-heading">Food Place</h4>
+							<p class="list-group-item-text">Stuff</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+				<h4 class="panel-title">
+					Cheapest
+				</h4>
+			</div>
+			<div id="collapseThree" class="panel-collapse collapse">
+				<div class="panel-body">
+
+					<div class="list-group">
+						<a href="#" class="list-group-item">
+							<h4 class="list-group-item-heading">Food Place</h4>
+							<p class="list-group-item-text">Stuff</p>
+						</a>
+						<a href="#" class="list-group-item">
+							<h4 class="list-group-item-heading">Food Place</h4>
+							<p class="list-group-item-text">Stuff</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="/javascripts/bootstrap.min.js"></script>
+	<script src="/javascripts/collapse.js"></script>
+	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtj8Ryh3t-hUlFkBx2faLB-ohqs6iGkn8&libraries=places&sensor=true"></script>-->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtj8Ryh3t-hUlFkBx2faLB-ohqs6iGkn8&sensor=true"></script>
+	<script type="text/javascript" src="//javascripts/places.js"></script>
+
+	<script type="text/javascript">
+	$(document).on("ready", function() {
+
+		$(".accordion").collapse();
+
+		$(".food-place").on('click', function() {
+
+
+
+		});
+
+	});
+	</script>
+</body>
 </html>
