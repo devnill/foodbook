@@ -2,8 +2,10 @@
 /*
  * GET home page.
  */
-
+var result_list;
 var api_key='AIzaSyBHHr3wne92Rdf0HfmggXVGO4ZHTALBZYs';
+var max_results=3;
+var cur=0;
 var request=require('request');
 
 
@@ -18,10 +20,6 @@ exports.test = function(req,res){
 };
 
 
-var place_details=function(ref_id,cb){
-    var req_string='https://maps.googleapis.com/maps/api/place/details/json?reference='+ref_id+'&sensor=true&key='+api_key;
-    request(req_string,cb);
-};
 
 
 exports.places = function(req, res){
@@ -78,8 +76,8 @@ exports.places = function(req, res){
         if(err===null){
             data=JSON.parse(data);
             var sort = function(data,prop,order){
-                var max_results=3,
-                    results=[],
+
+                    var results=[],
                     best,
                     i,j;
 
@@ -137,12 +135,38 @@ exports.places = function(req, res){
                         }
                     }
                 }
-                console.log(typeof data.results);
-                console.log(typeof results);
-                console.log(data);
+                //console.log(typeof data.results);
+                //console.log(typeof results);
+                //console.log(data);
                 //cb(data);
                 data.results=results;
-                res.send(data);
+                var r,rd=0;
+                result_list=data;
+                var place_details=function(ref_id,cb){
+                    var req_string='https://maps.googleapis.com/maps/api/place/details/json?reference='+ref_id+'&sensor=true&key='+api_key;
+                    request(req_string,cb);
+                };
+
+                for(r=0;r<data.results.length;r++){
+                    place_details(data.results[r].reference,function(err,data,body){
+                        if(!err){
+                            var fff;
+                            body = JSON.parse(body);
+                            var phone= body.result.formatted_phone_number;
+                            var name= body.result.name;
+                            for(fff=0;fff<result_list.results.length;fff++){
+                                if(name==result_list.results[fff].name){
+                                    result_list.results[fff].phone=phone;
+                                    cur++;
+                                    console.log(cur);
+                                    if(cur==max_results){
+                                        res.send(result_list);
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
 
             };
 
