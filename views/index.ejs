@@ -47,6 +47,24 @@
 		font-size: 34px;
 	}
 
+	.call-btn {
+
+		margin-left: 15px;
+		margin-top: 3px;
+	}
+	.food-attribute
+	{
+
+		font-size: 15px;
+		font-weight: bold;
+		margin-bottom: 5px;
+	}
+
+
+	#foodList{
+		display:none;
+	}
+
 	h1
 	{
 		font: bold italic;
@@ -76,13 +94,14 @@
         </div>
         <div class="modal-body">
 
-        	Website:<br/>
-        	<a href="www.pizzahut.com">http://pizzahut.com</a><br/>
-        	Address:<br/>
+        	<span class="food-attribute">Website:</span>
+        	<a class="pull-right" href="http://www.pizzahut.com">http://pizzahut.com</a><br/>
+        	<span class="food-attribute">Address:</span><br/>
         	<div class="well well-sm">
         		1434 W MasheryContext IO,<br/>
         		Denver, Colorado
         	</div>
+        	<button type="button" data-number="17853831049" class="call-btn-lg btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-earphone"></span>(404) 993-3993</button> 
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -103,18 +122,16 @@
 	</div>
 
 
-	<form role="form">
+	<form id="food-search" role="form">
 		<div class="input-group">
 			<span class="input-group-addon"><span class="glyphicon glyphicon-cutlery"></span></span>
-			<input type="text" class="form-control" id="foodInput" placeholder="pizza" autofocus>
+			<input type="text" class="form-control" id="foodInput" placeholder="Type of food you want... pizza, mexican, bbq...." autofocus>
 		</div>
 	</form>
 
-
-
-	<div class="panel-group" id="accordion">
+	<div class="panel-group" id="foodList">
 		<div class="panel panel-default">
-			<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+			<div class="panel-heading" data-toggle="collapse" data-parent="#foodList" href="#collapseOne">
 				<h4 class="panel-title">
 					Best
 				</h4>
@@ -123,11 +140,13 @@
 				<div class="panel-body">
 					<div class="list-group">
 						<a href="#" class="list-group-item food-place">
+							<button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
 							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
 							<h4 class="list-group-item-heading">Food Place</h4>
 							<p class="list-group-item-text">Stuff</p>
 						</a>
 						<a href="#" class="list-group-item">
+							<button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
 							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
 							<h4 class="list-group-item-heading">Food Place</h4>
 							<p class="list-group-item-text">Stuff</p>
@@ -137,7 +156,7 @@
 			</div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+			<div class="panel-heading" data-toggle="collapse" data-parent="#foodList" href="#collapseTwo">
 				<h4 class="panel-title">
 					Fastest
 				</h4>
@@ -147,11 +166,13 @@
 
 					<div class="list-group">
 						<a href="#" class="list-group-item">
+							<button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
 							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
 							<h4 class="list-group-item-heading">Food Place</h4>
 							<p class="list-group-item-text">Stuff</p>
 						</a>
 						<a href="#" class="list-group-item">
+							<button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
 							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
 							<h4 class="list-group-item-heading">Food Place</h4>
 							<p class="list-group-item-text">Stuff</p>
@@ -161,7 +182,7 @@
 			</div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+			<div class="panel-heading" data-toggle="collapse" data-parent="#foodList" href="#collapseThree">
 				<h4 class="panel-title">
 					Cheapest
 				</h4>
@@ -171,11 +192,13 @@
 
 					<div class="list-group">
 						<a href="#" class="list-group-item">
+							<button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
 							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
 							<h4 class="list-group-item-heading">Food Place</h4>
 							<p class="list-group-item-text">Stuff</p>
 						</a>
 						<a href="#" class="list-group-item">
+							<button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
 							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
 							<h4 class="list-group-item-heading">Food Place</h4>
 							<p class="list-group-item-text">Stuff</p>
@@ -185,7 +208,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="/javascripts/bootstrap.min.js"></script>
 	<script src="/javascripts/collapse.js"></script>
@@ -196,8 +219,28 @@
 	<script type="text/javascript">
 	$(document).on("ready", function() {
 
-		$(".accordion").collapse();
+		$(".call-btn, .call-btn-lg").on("click", function() {
 
+			var number = $(this).data("number");
+
+			window.location = "tel:"+number;
+
+		});
+
+
+		$("#food-search").on('submit', function(e) {
+			e.preventDefault();
+
+
+			$("#foodList").show(700);
+
+
+			$("#foodList").collapse();
+
+			$("#foodInput").blur();
+
+
+		});
 
 	});
 	</script>
