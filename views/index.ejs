@@ -32,6 +32,10 @@
     	padding-bottom: 6px;
     }
 
+    .panel-body {
+		padding: 0 !important;
+	}
+
     h1
     {
     	font: bold italic;
@@ -57,7 +61,67 @@
 		    <input type="text" class="form-control" id="foodInput" placeholder="pizza" autofocus>
 		</div>
 	</form>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+      <h4 class="panel-title">
+          Best
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
 
+	<div class="list-group">
+	  <a href="#" class="list-group-item">
+	    <h4 class="list-group-item-heading">Food Place</h4>
+	    <p class="list-group-item-text">Stuff</p>
+	  </a>
+	  <a href="#" class="list-group-item">
+	    <h4 class="list-group-item-heading">Food Place</h4>
+	    <p class="list-group-item-text">Stuff</p>
+	  </a>
+	  <a href="#" class="list-group-item">
+	    <h4 class="list-group-item-heading">Food Place</h4>
+	    <p class="list-group-item-text">Stuff</p>
+	  </a>
+	</div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+      <h4 class="panel-title">
+          Fastest
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+
+	<div class="list-group">
+	  <a href="#" class="list-group-item">
+	    <h4 class="list-group-item-heading">Food Place</h4>
+	    <p class="list-group-item-text">Stuff</p>
+	  </a>
+	  <a href="#" class="list-group-item">
+	    <h4 class="list-group-item-heading">Food Place</h4>
+	    <p class="list-group-item-text">Stuff</p>
+	  </a>
+	  <a href="#" class="list-group-item">
+	    <h4 class="list-group-item-heading">Food Place</h4>
+	    <p class="list-group-item-text">Stuff</p>
+	  </a>
+	</div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+      <h4 class="panel-title">
+           Cheapest
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
     
 	<div class="list-group">
 	  <a href="#" class="list-group-item">
@@ -73,10 +137,20 @@
 	    <p class="list-group-item-text">Stuff</p>
 	  </a>
 	</div>
+      </div>
+    </div>
+  </div>
+</div>
+    
   	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/collapse.js"></script>
     <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtj8Ryh3t-hUlFkBx2faLB-ohqs6iGkn8&libraries=places&sensor=true"></script>-->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtj8Ryh3t-hUlFkBx2faLB-ohqs6iGkn8&sensor=true"></script>
     <script type="text/javascript" src="//javascripts/places.js"></script>
+
+    <script type="text/javascript">
+    $(".accordion").collapse()
+    </script>
   </body>
 </html>
