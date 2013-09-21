@@ -4,9 +4,18 @@
     <title><%= title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
-
+	<link href='http://fonts.googleapis.com/css?family=Rambla:400,700italic' rel='stylesheet' type='text/css'>
     <style type="text/css">
 
+
+    *
+    {
+    	border-top-right-radius: 0px !important;
+		border-top-left-radius: 0px !important;
+
+    	border-bottom-right-radius: 0px !important;
+		border-bottom-left-radius: 0px !important;
+    }
 
     body
     {
@@ -17,18 +26,21 @@
     {
     	min-width: 100%;
     	width: 100%;
-    	background-color: #5FBDCE;
+    	background-color: #4575D4;
+    	text-align: center;
+
+    	padding-bottom: 6px;
     }
 
     h1
     {
+    	font: bold italic;
+    	font-family: 'Rambla', sans-serif;
     	font-weight: 900 !important;
     	color: #FFF;
     	margin-top: 0;
     	margin-bottom: 0;
     	padding-top: 18px;
-    	padding-bottom: 6px;
-    	text-align: center;
     }
 
     </style>
@@ -36,7 +48,8 @@
   </head>
   <body>
   	<div class="head">
-		<h1>FoodBook</h1>
+		<h1>the foodbook</h1>
+		<img src="/images/powered-by-google-on-non-white.png"></span>
   	</div>
 	<form role="form">
 		<div class="input-group">
@@ -46,7 +59,7 @@
 	</form>
 
 	<div class="list-group">
-	  <a href="#" class="list-group-item active">
+	  <a href="#" class="list-group-item">
 	    <h4 class="list-group-item-heading">Food Place</h4>
 	    <p class="list-group-item-text">Stuff</p>
 	  </a>
