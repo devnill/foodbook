@@ -34,12 +34,12 @@ exports.places = function(req, res){
         sort;
     console.log('places');
 
-    console.log(req.query);
+    //console.log(req.query);
 
-    if(req.query.sort!=undefined){
-        sort=req.query.sort;
+    if(req.body.sort!=undefined){
+        sort=req.body.sort;
     }
-    if(req.query.radius==undefined){
+    if(req.body.radius==undefined){
         radius=10000;
     }
     else{
