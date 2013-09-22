@@ -184,16 +184,50 @@
 
 	   $("#hungry").on('click', function() {
 
-	   		$("#food-search").submit();
+
+
+
+
+
+
+
+
+
+
+	
+			var food = $("#foodInput").val();
+
+
+
+	        if(navigator.geolocation) {
+	            browserSupportFlag = true;
+	            navigator.geolocation.getCurrentPosition(function(position) {
+	            	//console.log();
+                    //$("#food-search").submit();
+               		search(position.coords.latitude + "," + position.coords.longitude, food);
+	            }, function() {
+	                //todo prompt for zip
+	            });
+	        }
+
+	
+
+
+
+
+
+
+
+
+	   		
 	   });
 
 		var search = function(location, food)
 		{
 			$("#foodInput").blur();
 
-
 			$.post("places", { sort: "price_level", order:"asc",location: location, food: food}).done(function(data) {
-
+    console.log(data);
 				for (var i = data.results.length - 1; i >= 0; i--) {
 					
 					//if not open, ignore.
@@ -204,7 +238,7 @@
 
 
 
-					$("#cheapestGroup").find(".list-group").append("<a href='#' class='list-group-item food-place' data-address='"+data.results[i].vicinity+"' data-name='"+data.results[i].name+"'><button type='button' data-number='' class='call-btn btn btn-success pull-right'><span class='glyphicon glyphicon-earphone'></span></button><!--<span data-toggle='modal' href='#myModal' class='pull-right glyphicon glyphicon-book info-button'></span>--><h4 class='list-group-item-heading'>"+data.results[i].name+"</h4><p class='list-group-item-text'>"+data.results[i].vicinity+"</p></a>");
+					$("#cheapestGroup").find(".list-group").append("<a href='#' class='list-group-item food-place' data-address='"+data.results[i].vicinity+"' data-name='"+data.results[i].name+"'><a href='tel:"+data.results[i].phone+"'><button type='button' data-number='"+data.results[i].phone+"' class='call-btn btn btn-success pull-right'><span class='glyphicon glyphicon-earphone'></span></button></a><!--<span data-toggle='modal' href='#myModal' class='pull-right glyphicon glyphicon-book info-button'></span>--><h4 class='list-group-item-heading'>"+data.results[i].name+"</h4><p class='list-group-item-text'>"+data.results[i].vicinity+"</p></a>");
 
 					$("#foodList").collapse();
 					$("#foodList").slideDown(700);
@@ -219,26 +253,7 @@
 
 		};
 
-		$("#food-search").on('submit', function(e) {
-
-
-			e.preventDefault();
-			var food = $("#foodInput").val();
-
-
-
-	        if(navigator.geolocation) {
-	            browserSupportFlag = true;
-	            navigator.geolocation.getCurrentPosition(function(position) {
-	            	console.log();
-               		
-               		search(position.coords.latitude + "," + position.coords.longitude, food);
-	            }, function() {
-	                //todo prompt for zip
-	            });
-	        }
-
-		});
+	
 
 	});
 	</script>
