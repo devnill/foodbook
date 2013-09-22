@@ -5,7 +5,7 @@
 var result_list;
 var api_key='AIzaSyBHHr3wne92Rdf0HfmggXVGO4ZHTALBZYs';
 var max_results=3;
-var cur=0;
+
 var request=require('request');
 
 
@@ -73,7 +73,9 @@ exports.places = function(req, res){
     req_string='https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+location+'&radius='+radius+'&types=food&name='+food+'&sensor=true&key='+api_key;
 
     handle_response=function(err,response,data){
+        console.log('wat');
         if(err===null){
+            console.log(data);
             data=JSON.parse(data);
             var sort = function(data,prop,order){
 
@@ -148,7 +150,9 @@ exports.places = function(req, res){
                 };
 
                 for(r=0;r<data.results.length;r++){
+                    var cur=0;
                     place_details(data.results[r].reference,function(err,data,body){
+                        console.log(err);
                         if(!err){
                             var fff;
                             body = JSON.parse(body);
@@ -164,6 +168,9 @@ exports.places = function(req, res){
                                     }
                                 }
                             }
+                        }
+                        else{
+                            console.log('dddd');
                         }
                     });
                 }

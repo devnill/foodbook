@@ -133,31 +133,59 @@
 	</form>
 
 	<div class="panel-group" id="foodList">
-		<div class="panel panel-default">
-			<div class="panel-heading" data-toggle="collapse" data-parent="#foodList" href="#cheapestGroup">
-				<h4 class="panel-title">
-					Cheapest
-				</h4>
-			</div>
-			<div id="cheapestGroup" class="panel-collapse collapse in">
-				<div class="panel-body">
-					<div class="list-group"><!--
-						<a href="#" class="list-group-item food-place">
-							<button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
-							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
-							<h4 class="list-group-item-heading">Food Place</h4>
-							<p class="list-group-item-text">Stuff</p>
-						</a>
-						<a href="#" class="list-group-item">
-							<button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
-							<span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
-							<h4 class="list-group-item-heading">Food Place</h4>
-							<p class="list-group-item-text">Stuff</p>
-						</a>-->
-					</div>
-				</div>
-			</div>
+	  <div class="panel panel-default">
+		<div class="panel-heading" data-toggle="collapse" data-parent="#foodList" href="#cheapestGroup">
+		  <h4 class="panel-title">
+			Cheapest
+		  </h4>
 		</div>
+		<div id="cheapestGroup" class="panel-collapse collapse in">
+		  <div class="panel-body">
+			<div class="list-group"><!--
+						                <a href="#" class="list-group-item food-place">
+							              <button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
+							              <span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
+							              <h4 class="list-group-item-heading">Food Place</h4>
+							              <p class="list-group-item-text">Stuff</p>
+						                </a>
+						                <a href="#" class="list-group-item">
+							              <button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
+							              <span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
+							              <h4 class="list-group-item-heading">Food Place</h4>
+							              <p class="list-group-item-text">Stuff</p>
+						                </a>-->
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+      <div class="panel panel-default">
+		<div class="panel-heading" data-toggle="collapse" data-parent="#foodList" href="#highestRated">
+		  <h4 class="panel-title">
+			Highest Rated
+		  </h4>
+		</div>
+		<div id="highestRated" class="panel-collapse collapse in">
+		  <div class="panel-body">
+			<div class="list-group"><!--
+						                <a href="#" class="list-group-item food-place">
+							              <button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
+							              <span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
+							              <h4 class="list-group-item-heading">Food Place</h4>
+							              <p class="list-group-item-text">Stuff</p>
+						                </a>
+						                <a href="#" class="list-group-item">
+							              <button type="button" data-number="17853831049" class="call-btn btn btn-success pull-right"><span class="glyphicon glyphicon-earphone"></span></button>
+							              <span data-toggle="modal" href="#myModal" class="pull-right glyphicon glyphicon-book info-button"></span>
+							              <h4 class="list-group-item-heading">Food Place</h4>
+							              <p class="list-group-item-text">Stuff</p>
+						                </a>-->
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+
 
 	</div>
 	
@@ -170,6 +198,12 @@
 
 	<script type="text/javascript">
 	$(document).on("ready", function() {
+    window.wtf=0;
+
+
+    
+	                $("#foodList").collapse();
+	                $("#foodList").slideDown(700);
 
 		$(".call-btn, .call-btn-lg").on("click", function() {
 
@@ -225,33 +259,58 @@
 		var search = function(location, food)
 		{
 			$("#foodInput").blur();
-
-			$.post("places", { sort: "price_level", order:"asc",location: location, food: food}).done(function(data) {
+    console.log('fff');
+	        $.post("places", { sort: "price_level", order:"asc",location: location, food: food}).done(function(data) {
+    console.log('data');            
     console.log(data);
-				for (var i = data.results.length - 1; i >= 0; i--) {
-					
-					//if not open, ignore.
-					if(typeof data.results[i].opening_hours !== 'undefined' && !data.results[i].opening_hours.open_now)
-					{
-						continue;
-					}
+    $("#cheapestGroup").find(".list-group").html('\n');
+	            for (var i = data.results.length - 1; i >= 0; i--) {
+	                console.log(data.results[i].opening_hours);
+	                //if not open, ignore.
+	                if(typeof data.results[i].opening_hours !== 'undefined' && !data.results[i].opening_hours.open_now)
+	                {
+	                    continue;
+	                }
 
 
 
-					$("#cheapestGroup").find(".list-group").append("<a href='#' class='list-group-item food-place' data-address='"+data.results[i].vicinity+"' data-name='"+data.results[i].name+"'><a href='tel:"+data.results[i].phone+"'><button type='button' data-number='"+data.results[i].phone+"' class='call-btn btn btn-success pull-right'><span class='glyphicon glyphicon-earphone'></span></button></a><!--<span data-toggle='modal' href='#myModal' class='pull-right glyphicon glyphicon-book info-button'></span>--><h4 class='list-group-item-heading'>"+data.results[i].name+"</h4><p class='list-group-item-text'>"+data.results[i].vicinity+"</p></a>");
-
-					$("#foodList").collapse();
-					$("#foodList").slideDown(700);
-
-				}
+	                $("#cheapestGroup").find(".list-group").append("<a href='#' style='border:none' class='list-group-item food-place' data-address='"+data.results[i].vicinity+"' data-name='"+data.results[i].name+"'><a style='border:none' href='tel:"+data.results[i].phone+"'><button type='button' data-number='"+data.results[i].phone+"' class='call-btn btn btn-success pull-right'><span class='glyphicon glyphicon-earphone'></span></button></a><!--<span data-toggle='modal' href='#myModal' class='pull-right glyphicon glyphicon-book info-button'></span>--><h4 class='list-group-item-heading'>"+data.results[i].name+"</h4><p class='list-group-item-text'>"+data.results[i].vicinity+"</p></a>");
+    window.wtf++;
+ 
+	            }
 
 
-			}).error(function(err) {
+	        }).error(function(err) {
 
-			});
+	        });
 
 
-		};
+            $.post("places", { sort: "rating", order:"desc",location: location, food: food}).done(function(data) {
+                console.log(data);
+    $("#highestRated").find(".list-group").html('\n');
+	            for (var i = data.results.length - 1; i >= 0; i--) {
+	                
+	                //if not open, ignore.
+	                if(typeof data.results[i].opening_hours !== 'undefined' && !data.results[i].opening_hours.open_now)
+	                {
+	                    continue;
+	                }
+
+
+
+	                $("#highestRated").find(".list-group").append("<a href='#' style='border:none' class='list-group-item food-place' data-address='"+data.results[i].vicinity+"' data-name='"+data.results[i].name+"'><a style='border:none' href='tel:"+data.results[i].phone+"'><button type='button' data-number='"+data.results[i].phone+"' class='call-btn btn btn-success pull-right'><span class='glyphicon glyphicon-earphone'></span></button></a><!--<span data-toggle='modal' href='#myModal' class='pull-right glyphicon glyphicon-book info-button'></span>--><h4 class='list-group-item-heading'>"+data.results[i].name+"</h4><p class='list-group-item-text'>"+data.results[i].vicinity+"</p></a>");
+window.wtf++;
+console.log() 
+ 	
+	            }
+
+
+	        }).error(function(err) {
+
+	        });
+
+
+	    };
 
 	
 
